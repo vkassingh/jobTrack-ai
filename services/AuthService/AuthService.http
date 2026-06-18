@@ -1,6 +1,23 @@
 @AuthService_HostAddress = http://localhost:5104
 
-GET {{AuthService_HostAddress}}/weatherforecast/
-Accept: application/json
+### Register
+POST {{AuthService_HostAddress}}/auth/register
+Content-Type: application/json
 
-###
+{
+  "email": "test@example.com",
+  "password": "P@ssword1"
+}
+
+### Login
+POST {{AuthService_HostAddress}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "P@ssword1"
+}
+
+### Get current user
+GET {{AuthService_HostAddress}}/auth/me
+Authorization: Bearer <token>
