@@ -80,7 +80,7 @@ namespace JobTrackAI.AuthService.Controllers
         }
     }
 
-    public record RegisterRequest(string Email, string Password);
+    public record RegisterRequest(string Name, string Email, string Password);
     public record LoginRequest(string Email, string Password);
     public record AuthResponse(string Email, string Token);
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\AuthService\\AuthService.csproj": {}
+    "c:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\AuthService\\AuthService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\AuthService\\AuthService.csproj": {
+    "c:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\AuthService\\AuthService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\AuthService\\AuthService.csproj",
+        "projectUniqueName": "c:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\AuthService\\AuthService.csproj",
         "projectName": "AuthService",
-        "projectPath": "C:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\AuthService\\AuthService.csproj",
+        "projectPath": "c:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\AuthService\\AuthService.csproj",
         "packagesPath": "C:\\Users\\Vikas Singh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\AuthService\\obj\\",
+        "outputPath": "c:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\AuthService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Vikas Singh\\AppData\\Roaming\\NuGet\\NuGet.Config"

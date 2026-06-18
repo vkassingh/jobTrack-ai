@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Eye, EyeOff, ArrowRight, AlertCircle, BriefcaseBusiness } from 'lucide-react'
 import api from '../lib/api'
-import { useAuthStore } from '../store/auth'
 
 export default function RegisterPage() {
   const [name, setName] = useState('')
@@ -11,7 +10,6 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const login = useAuthStore((state) => state.login)
   const navigate = useNavigate()
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -19,8 +17,7 @@ export default function RegisterPage() {
     setIsLoading(true)
     try {
       const response = await api.post('/auth/register', { name, email, password })
-      login(response.data.token, response.data.email)
-      navigate('/dashboard')
+      navigate('/login?registered=true')
     } catch (err: any) {
       setError(err.response?.data?.message || 'Registration failed')
     } finally {

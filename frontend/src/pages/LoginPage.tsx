@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { Eye, EyeOff, ArrowRight, AlertCircle, BriefcaseBusiness } from 'lucide-react'
+import { useNavigate, Link, useSearchParams } from 'react-router-dom'
+import { Eye, EyeOff, ArrowRight, AlertCircle, BriefcaseBusiness, CheckCircle } from 'lucide-react'
 import api from '../lib/api'
 import { useAuthStore } from '../store/auth'
 
@@ -12,6 +12,8 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const login = useAuthStore((state) => state.login)
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const registered = searchParams.get('registered') === 'true'
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
@@ -96,6 +98,13 @@ export default function LoginPage() {
                 </button>
               </div>
             </div>
+
+            {registered && (
+              <div className="flex items-center gap-sm px-md py-sm bg-secondary-container rounded-lg">
+                <CheckCircle size={16} className="text-primary shrink-0" />
+                <p className="font-label-sm text-label-sm text-on-surface">Account created! Please log in.</p>
+              </div>
+            )}
 
             {error && (
               <div className="flex items-center gap-sm px-md py-sm bg-error-container rounded-lg">
