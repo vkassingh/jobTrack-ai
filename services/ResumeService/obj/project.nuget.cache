@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "D4AhNDnpzKU=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\ResumeService\\ResumeService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Vikas Singh\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.9\\microsoft.aspnetcore.openapi.10.0.9.nupkg.sha512",
+    "C:\\Users\\Vikas Singh\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
