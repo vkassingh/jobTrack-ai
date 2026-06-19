@@ -16,7 +16,7 @@ export default function RegisterPage() {
     event.preventDefault()
     setIsLoading(true)
     try {
-      const response = await api.post('/auth/register', { name, email, password })
+      await api.post('/auth/register', { name, email, password })
       navigate('/login?registered=true')
     } catch (err: any) {
       setError(err.response?.data?.message || 'Registration failed')

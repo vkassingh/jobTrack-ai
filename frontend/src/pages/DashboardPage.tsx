@@ -70,10 +70,16 @@ export default function DashboardPage() {
           <button className="w-full py-sm px-md bg-primary text-on-primary rounded-lg font-button text-button shadow-sm hover:opacity-90 transition-all mb-sm">
             Upgrade to Pro
           </button>
-          <a className="flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm transition-colors rounded-lg group" href="#">
-            <Settings size={18} />
-            <span className="font-body-md text-body-md">Settings</span>
-          </a>
+          <button
+            onClick={() => {
+              setSidebarOpen(false)
+              navigate('/profile')
+            }}
+            className="w-full flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm transition-colors rounded-lg group"
+          >
+            <Settings size={18} className="group-hover:text-primary transition-colors" />
+            <span className="font-body-md text-body-md">Profile</span>
+          </button>
           <button
             onClick={handleLogout}
             className="w-full flex items-center gap-md text-on-surface-variant hover:bg-surface-container-high px-md py-sm transition-colors rounded-lg group"

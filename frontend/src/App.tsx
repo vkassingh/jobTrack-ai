@@ -4,6 +4,7 @@ import { useAuthStore } from './store/auth'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import DashboardPage from './pages/DashboardPage'
+import Profile from './pages/Profile'
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
   const token = useAuthStore((state) => state.token)
@@ -21,6 +22,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           }
         />

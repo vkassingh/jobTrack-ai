@@ -1,3 +1,4 @@
+using JobTrackAI.AuthService.DTOs;
 using JobTrackAI.AuthService.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace JobTrackAI.AuthService.Controllers
 {
     [ApiController]
-    [Route("auth")]
+    [Route("api/auth")]
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -77,6 +78,93 @@ namespace JobTrackAI.AuthService.Controllers
                 Email = User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value,
                 UserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value
             });
+        }
+
+        [Authorize]
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetProfile()
+        {
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized(new { message = "Unable to identify the current user." });
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            var claims = await _userManager.GetClaimsAsync(user);
+            var fullName = claims.FirstOrDefault(c => c.Type == "FullName")?.Value ?? string.Empty;
+            return Ok(new ProfileDto(user.Email ?? string.Empty, user.Id, fullName));
+        }
+
+        [Authorize]
+        [HttpPut("profile")]
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto request)
+        {
+            if (request == null || string.IsNullOrWhiteSpace(request.FullName))
+            {
+                return BadRequest(new { message = "Full name is required." });
+            }
+
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized(new { message = "Unable to identify the current user." });
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            var existingClaim = (await _userManager.GetClaimsAsync(user)).FirstOrDefault(c => c.Type == "FullName");
+            if (existingClaim != null)
+            {
+                await _userManager.RemoveClaimAsync(user, existingClaim);
+            }
+
+            var addClaimResult = await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("FullName", request.FullName.Trim()));
+            if (!addClaimResult.Succeeded)
+            {
+                return BadRequest(new { message = string.Join(" ", addClaimResult.Errors.Select(e => e.Description)) });
+            }
+
+            return Ok(new { message = "Profile updated successfully." });
+        }
+
+        [Authorize]
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto request)
+        {
+            if (request == null || string.IsNullOrWhiteSpace(request.CurrentPassword) || string.IsNullOrWhiteSpace(request.NewPassword))
+            {
+                return BadRequest(new { message = "Current password and new password are required." });
+            }
+
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized(new { message = "Unable to identify the current user." });
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound(new { message = "User not found." });
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
+            if (!result.Succeeded)
+            {
+                return BadRequest(new { message = string.Join(" ", result.Errors.Select(e => e.Description)) });
+            }
+
+            return Ok(new { message = "Password changed successfully." });
         }
     }
 

@@ -11,35 +11,81 @@ namespace JobTrackAI.AuthService.Data
                 // Apply pending migrations
                 context.Database.EnsureCreated();
 
-                // Check if dummy user already exists
+                // Seed test@example.com
                 var existingUser = await userManager.FindByEmailAsync("test@example.com");
-                if (existingUser != null)
+                if (existingUser == null)
                 {
-                    Console.WriteLine("✓ Dummy user already exists");
-                    return;
-                }
+                    var dummyUser = new IdentityUser
+                    {
+                        UserName = "test@example.com",
+                        Email = "test@example.com",
+                        EmailConfirmed = true
+                    };
 
-                // Create dummy user
-                var dummyUser = new IdentityUser
-                {
-                    UserName = "test@example.com",
-                    Email = "test@example.com",
-                    EmailConfirmed = true
-                };
-
-                var result = await userManager.CreateAsync(dummyUser, "Test@123");
-                if (result.Succeeded)
-                {
-                    Console.WriteLine("✓ Dummy user created successfully");
-                    Console.WriteLine("  Email: test@example.com");
-                    Console.WriteLine("  Password: Test@123");
+                    var result = await userManager.CreateAsync(dummyUser, "Test@123");
+                    if (result.Succeeded)
+                    {
+                        Console.WriteLine("✓ Dummy user created successfully");
+                        Console.WriteLine("  Email: test@example.com");
+                        Console.WriteLine("  Password: Test@123");
+                    }
+                    else
+                    {
+                        Console.WriteLine("✗ Failed to create dummy user:");
+                        foreach (var error in result.Errors)
+                        {
+                            Console.WriteLine($"  - {error.Description}");
+                        }
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("✗ Failed to create dummy user:");
-                    foreach (var error in result.Errors)
+                    Console.WriteLine("✓ Dummy user already exists");
+                }
+
+                // Seed vikas@gmail.com
+                var vikasUser = await userManager.FindByEmailAsync("vikas@gmail.com");
+                if (vikasUser == null)
+                {
+                    var dummyUser = new IdentityUser
                     {
-                        Console.WriteLine($"  - {error.Description}");
+                        UserName = "vikas@gmail.com",
+                        Email = "vikas@gmail.com",
+                        EmailConfirmed = true
+                    };
+
+                    var result = await userManager.CreateAsync(dummyUser, "Vikas123");
+                    if (result.Succeeded)
+                    {
+                        Console.WriteLine("✓ Vikas user created successfully");
+                        Console.WriteLine("  Email: vikas@gmail.com");
+                        Console.WriteLine("  Password: Vikas123");
+                    }
+                    else
+                    {
+                        Console.WriteLine("✗ Failed to create Vikas user:");
+                        foreach (var error in result.Errors)
+                        {
+                            Console.WriteLine($"  - {error.Description}");
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("✓ Vikas user already exists, resetting password to Vikas123");
+                    var removePasswordResult = await userManager.RemovePasswordAsync(vikasUser);
+                    var addPasswordResult = await userManager.AddPasswordAsync(vikasUser, "Vikas123");
+                    if (addPasswordResult.Succeeded)
+                    {
+                        Console.WriteLine("✓ Vikas user password reset to Vikas123 successfully");
+                    }
+                    else
+                    {
+                        Console.WriteLine("✗ Failed to reset Vikas user password:");
+                        foreach (var error in addPasswordResult.Errors)
+                        {
+                            Console.WriteLine($"  - {error.Description}");
+                        }
                     }
                 }
             }
