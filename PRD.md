@@ -46,3 +46,21 @@ Build a modern full-stack web application that helps job seekers efficiently tra
 - **Database**: PostgreSQL
 - **AI**: Azure OpenAI
 - **Deployment**: Render/Vercel
+
+
+## Next main feature
+Feature 1: Dynamic Dashboard with RESTful CRUD: A comprehensive board (Kanban style or tabular) to add, view, update, and delete job applications (Company, Role, Salary, Status, Job Description URL).
+
+Feature 2: AI Resume-to-Job Description Matcher:
+
+What it does: An endpoint where the frontend sends a user's uploaded resume (parsed text) and the targeted job description. The .NET backend calls an LLM API (like Gemini or OpenAI) to return a match score (0-100%) and a list of missing keywords.
+
+
+Feature 3: The "AI Resume Optimization" Specifics
+To make the AI portion robust on the backend:
+
+Structured JSON Responses: Ensure your .NET Core API enforces a strict schema for the AI's output. Instead of raw text, the backend should parse the AI response into a structured C# object/DTO (Data Transfer Object) containing:
+
+MatchPercentage (int)
+
+MissingKeywords (string array)

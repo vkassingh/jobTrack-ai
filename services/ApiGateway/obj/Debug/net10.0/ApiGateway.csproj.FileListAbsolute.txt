@@ -32,3 +32,5 @@ C:\Users\Vikas Singh\Desktop\VIKAS\Assignments\jobtrack-ai\services\ApiGateway\o
 C:\Users\Vikas Singh\Desktop\VIKAS\Assignments\jobtrack-ai\services\ApiGateway\obj\Debug\net10.0\ApiGateway.pdb
 C:\Users\Vikas Singh\Desktop\VIKAS\Assignments\jobtrack-ai\services\ApiGateway\obj\Debug\net10.0\ApiGateway.genruntimeconfig.cache
 C:\Users\Vikas Singh\Desktop\VIKAS\Assignments\jobtrack-ai\services\ApiGateway\obj\Debug\net10.0\ref\ApiGateway.dll
+C:\Users\Vikas Singh\Desktop\VIKAS\Assignments\jobtrack-ai\services\ApiGateway\bin\Debug\net10.0\System.IO.Hashing.dll
+C:\Users\Vikas Singh\Desktop\VIKAS\Assignments\jobtrack-ai\services\ApiGateway\bin\Debug\net10.0\Yarp.ReverseProxy.dll

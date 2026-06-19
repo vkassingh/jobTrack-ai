@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "9WXkBfHho/Y=",
+  "dgSpecHash": "Xm3/X1O1WeA=",
   "success": true,
   "projectFilePath": "C:\\Users\\Vikas Singh\\Desktop\\VIKAS\\Assignments\\jobtrack-ai\\services\\ApiGateway\\ApiGateway.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Vikas Singh\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.9\\microsoft.aspnetcore.openapi.10.0.9.nupkg.sha512",
-    "C:\\Users\\Vikas Singh\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+    "C:\\Users\\Vikas Singh\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\Vikas Singh\\.nuget\\packages\\system.io.hashing\\8.0.0\\system.io.hashing.8.0.0.nupkg.sha512",
+    "C:\\Users\\Vikas Singh\\.nuget\\packages\\yarp.reverseproxy\\2.2.0\\yarp.reverseproxy.2.2.0.nupkg.sha512"
   ],
   "logs": []
 }
